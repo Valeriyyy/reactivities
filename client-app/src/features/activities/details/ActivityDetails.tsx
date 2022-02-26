@@ -24,7 +24,7 @@ export default function ActivityDetails({ activity, cancelSelectActivity, openFo
                 <Card.Content extra>
                 <Button.Group widths='2'>
                     <Button onClick={() => openForm(activity.id)} basic color='blue' content='Edit' />
-                    <Button onCLick={cancelSelectActivity} basic color='grey' content='Cancel' />
+                    <Button onClick={() => cancelSelectActivity()} basic color='grey' content='Cancel' />
                 </Button.Group>
             </Card.Content>
         </Card>

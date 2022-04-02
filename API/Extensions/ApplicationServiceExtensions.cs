@@ -1,9 +1,11 @@
 using Application.Activities;
 using Application.Core;
+using Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Persistence;
+using Security;
 
 namespace API.Extensions;
 public static class ApplicationServiceExtensions
@@ -23,7 +25,8 @@ public static class ApplicationServiceExtensions
 		});
 		services.AddMediatR(typeof(List.Handler).Assembly);
 		services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+		services.AddScoped<IUserAccessor, UserAccessor>();
 
-        return services;
+		return services;
     }
 }

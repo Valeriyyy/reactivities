@@ -51,7 +51,7 @@ public class AccountController : ControllerBase
 
 		var user = new AppUser
 		{
-			Displayname = registerDto.DisplayName,
+			DisplayName = registerDto.DisplayName,
 			Email = registerDto.Email,
 			UserName = registerDto.Username,
 			Bio = "something for now cause I don't want to drop my tables"
@@ -77,7 +77,7 @@ public class AccountController : ControllerBase
 	private UserDTO CreateUserObject(AppUser user) {
 		return new UserDTO
 		{
-			DisplayName = user.Displayname,
+			DisplayName = user.DisplayName,
 			Image = null,
 			Token = _tokenService.CreateToken(user),
 			Username = user.UserName

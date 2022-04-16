@@ -1,3 +1,4 @@
+import { isThisQuarter } from "date-fns";
 import { makeAutoObservable, runInAction } from "mobx";
 import { history } from "../..";
 import agent from "../api/agent";
@@ -53,5 +54,9 @@ export default class UserStore {
         } catch (error) {
             throw error;
         }
-   }
+    }
+    
+    setImage = (image: string) => {
+        if (this.user) this.user.image = image;
+    }
 }

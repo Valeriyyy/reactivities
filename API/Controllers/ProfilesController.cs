@@ -6,9 +6,13 @@ namespace Controllers;
 
 public class ProfilesController : BaseApiController
 {
-    [HttpGet("{username}")]
-    public async Task<ActionResult<Profile>> GetProfile(string username)
-    {
+	[HttpGet("{username}")]
+	public async Task<ActionResult<Profile>> GetProfile(string username) {
 		return HandleResult(await Mediator.Send(new Details.Query { Username = username }));
+	}
+
+	[HttpPut]
+	public async Task<ActionResult> EditProfile(Edit.Command command) {
+		return HandleResult(await Mediator.Send(new Edit.Command { DisplayName = command.DisplayName, Bio = command.Bio }));
 	}
 }

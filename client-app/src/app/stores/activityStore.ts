@@ -90,6 +90,7 @@ export default class ActivityStore {
             activity.host = activity.attendees?.find(x => x.username === activity.hostUsername);
         }
         activity.date = new Date(activity.date!);
+        console.log('setting activity ', activity);
         this.activityRegistry.set(activity.id, activity);
     };
 
@@ -187,5 +188,16 @@ export default class ActivityStore {
 
     clearSelectedActivity = () => {
         this.selectedActivity = undefined;
+    }
+
+    updateAttendeeFollowing = (username: string) => {
+        this.activityRegistry.forEach(activity => {
+            activity.attendees.forEach(attendee => {
+                if (attendee.username === username) {
+                    attendee.following ? attendee.followersCount-- : attendee.followersCount++;
+                    attendee.following = !attendee.following;
+                }
+            })
+        })
     }
 }

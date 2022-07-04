@@ -4,7 +4,6 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { Segment, Header, Comment, Button, Loader } from 'semantic-ui-react'
 import { useStore } from '../../../app/stores/store';
-import MyTextArea from '../../../common/form/MyTextArea';
 import * as Yup from 'yup';
 import { formatDistanceToNow } from 'date-fns';
 

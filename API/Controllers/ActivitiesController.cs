@@ -5,14 +5,15 @@ using Persistence;
 using Application.Activities;
 using Microsoft.AspNetCore.Authorization;
 using Activities;
+using Application.Core;
 
 namespace API.Controllers;
 
 public class ActivitiesController : BaseApiController
 {
 	[HttpGet]
-	public async Task<IActionResult> GetActivities(CancellationToken ct) {
-		return HandleResult(await Mediator.Send(new List.Query(), ct));
+	public async Task<IActionResult> GetActivities(CancellationToken ct, [FromQuery] ActivityParams param) {
+		return HandlePagedResult(await Mediator.Send(new List.Query { Params = param }, ct));
 	}
 
 	[HttpGet("{id}")]
@@ -39,8 +40,7 @@ public class ActivitiesController : BaseApiController
 	}
 
 	[HttpPost("{id}/attend")]
-	public async Task<IActionResult> Attend(Guid id)
-	{
+	public async Task<IActionResult> Attend(Guid id) {
 		return HandleResult(await Mediator.Send(new UpdateAttendance.Command { Id = id }));
 	}
 }

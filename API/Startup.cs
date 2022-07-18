@@ -47,17 +47,21 @@ namespace API
 
 			app.UseRouting();
 
+			// commands used for running the react app
+			app.UseDefaultFiles();
+			app.UseStaticFiles();
+
 			app.UseCors("CorsPolicy");
 
 			// authentication must come before authorization
 			//   <!-- <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.16.0" /> -->
 			app.UseAuthentication();
-
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints => {
 				endpoints.MapControllers();
 				endpoints.MapHub<ChatHub>("/chat");
+				endpoints.MapFallbackToController("Index", "Fallback");
 			});
 		}
 	}

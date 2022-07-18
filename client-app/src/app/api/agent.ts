@@ -1,5 +1,4 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { request } from "http";
 import { toast } from "react-toastify";
 import { history } from "../..";
 import { Activity, ActivityFormValues } from "../models/activity";
@@ -8,13 +7,7 @@ import { Photo, Profile, UserActivity } from "../models/profile";
 import { User, UserFormValues } from "../models/user";
 import { store } from "../stores/store";
 
-const sleep = async (delay: number) => {
-    return new Promise((resolve) => {
-        setTimeout(resolve, delay);
-    });
-}
-
-axios.defaults.baseURL = 'https://localhost:5001/api';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 axios.interceptors.request.use(config => {
     const token = store.commonStore.token;

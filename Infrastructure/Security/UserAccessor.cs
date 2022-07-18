@@ -13,4 +13,5 @@ public class UserAccessor : IUserAccessor
 	}
 
 	public string GetUsername() => _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+	public string GetUserGuid() => _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 }

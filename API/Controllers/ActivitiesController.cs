@@ -6,6 +6,7 @@ using Application.Activities;
 using Microsoft.AspNetCore.Authorization;
 using Activities;
 using Application.Core;
+using System.Text.Json;
 
 namespace API.Controllers;
 

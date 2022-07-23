@@ -74,14 +74,16 @@ public class AccountController : ControllerBase
 		var user = await _userManager.Users.Include(p => p.Photos)
 		.FirstOrDefaultAsync(x => x.Email == User.FindFirstValue(ClaimTypes.Email));
 
+		if (user is null)
+			return new UserDTO { };
 		return CreateUserObject(user);
 	}
 
 	private UserDTO CreateUserObject(AppUser user) {
 		return new UserDTO
 		{
-			DisplayName = user.DisplayName,
-			Image = user.Photos?.FirstOrDefault(x => x.IsMain)?.Url,
+			DisplayName = user.DisplayName!,
+			Image = user.Photos?.FirstOrDefault(x => x.IsMain)?.Url!,
 			Token = _tokenService.CreateToken(user),
 			Username = user.UserName
 		};

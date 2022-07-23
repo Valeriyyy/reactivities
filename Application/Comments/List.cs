@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Application.Core;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -10,7 +11,7 @@ public class List
 {
 	public class Query : IRequest<Result<List<CommentDto>>>
 	{
-        public Guid ActivityId { get; set; }
+		public Guid ActivityId { get; set; }
 	}
 
 	public class Handler : IRequestHandler<Query, Result<List<CommentDto>>>

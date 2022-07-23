@@ -24,7 +24,7 @@ public class ChatHub : Hub
         if(activityId is not null) {
 			await Groups.AddToGroupAsync(Context.ConnectionId, activityId);
 		}
-		var result = await _mediator.Send(new List.Query { ActivityId = Guid.Parse(activityId) });
+		var result = await _mediator.Send(new List.Query { ActivityId = Guid.Parse(activityId!) });
 		await Clients.Caller.SendAsync("LoadComments", result.Value);
 	}
 }

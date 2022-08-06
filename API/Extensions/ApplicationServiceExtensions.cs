@@ -52,7 +52,13 @@ public static class ApplicationServiceExtensions
 
 		services.AddCors(opt => {
 			opt.AddPolicy("CorsPolicy", policy => {
-				policy.AllowAnyMethod().AllowAnyHeader().AllowCredentials().AllowAnyOrigin().WithOrigins("http://localhost:3000");
+				policy
+					.AllowAnyMethod()
+					.AllowAnyHeader()
+					.AllowCredentials()
+					.AllowAnyOrigin()
+					.WithExposedHeaders("WWW-Authenticate", "Pagination")
+					.WithOrigins("http://localhost:3000");
 			});
 		});
 		services.AddMediatR(typeof(List.Handler).Assembly);

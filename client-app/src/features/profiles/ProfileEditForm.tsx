@@ -26,8 +26,8 @@ export default observer(function ProfileEditForm({ setEditMode }: Props) {
         >
             {({isSubmitting, isValid, dirty}) => (
                 <Form className='ui form'>
-                    <MyTextInput placeholder="Display Name" name="displayName" />
-                    <MyTextArea rows={3} placeholder="Add your bio..." name="bio" />
+                    <MyTextInput placeholder="Display Name" name="displayName" label='Name'/>
+                    <MyTextArea rows={3} placeholder="Add your bio..." name="bio" label='Bio'/>
                     <Button
                         positive
                         type='submit'
